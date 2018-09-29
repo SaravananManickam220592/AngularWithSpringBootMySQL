@@ -1,0 +1,30 @@
+<div class="container" id="addTraineeFormContainer">
+  <h2>User Details</h2>
+  <div class="alert alert-success" *ngIf="addUserStatus" role="alert">
+     User Detail added successfully
+  </div>
+  <form #addUserForm="ngForm" (ngSubmit)="saveUser(addUserForm)">
+    <div class="form">
+      <div class="form-group">
+        <label for="userName">User Name</label>
+        <input type="text" ngModel #userName="ngModel" class="form-control" id="userName" name="userName"
+          placeholder="User Name" required>
+        <div class="alert alert-danger" *ngIf="userName.touched && userName.invalid">
+          <div *ngIf="userName.errors.required"> User Name is Required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="userEmail">Email</label>
+        <input type="text" email ngModel class="form-control" #userEmail="ngModel" id="userEmail" name="userEmail" placeholder="Email" required>
+        <div class="alert alert-danger" *ngIf="userEmail.touched && userEmail.invalid">
+          <div *ngIf="userEmail.errors.required"> Email is Required</div>
+          <div *ngIf="userEmail.errors.email"> Invalid Email format</div>
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-success subBtn" style="margin-right: 10px;" [disabled]="addUserForm.invalid">     
+      Submit
+    </button>
+    <button type="reset" class="btn btn-danger" >Reset</button>
+  </form>
+</div>
